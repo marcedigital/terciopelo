@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Levaus";
+  src: url("/fonts/Levaus.woff") format("woff"),
+    url("/fonts/Levaus.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Afacad";
+  src: url("/fonts/Afacad-Regular.ttf") format("truetype"),
+    url("/fonts/Afacad-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Vollkorn";
+  src: url("/fonts/Vollkorn-Regular.ttf") format("truetype"),
+    url("/fonts/Vollkorn-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/*@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}*/
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Levaus, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* styles/globals.css or your custom CSS file */
+
+.card {
+  position: relative;
+  width: 317px;
+  height: 480px; /* Adjust to your design */
+  perspective: 1000px; /* Enable 3D perspective */
+}
+
+.inner-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d; /* Preserve 3D for children */
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide back face when flipped */
+  border-radius: 12px;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+/* Adding rotate-y-180 class for flipping effect */
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.steps-gradient {
+  background: linear-gradient(274.24deg, #b880b5 0%, #e49539 61.9%);
+  border-radius: 10px;
+  padding: 15px 25px;
+  width: 100%; /* Default for small screens */
+}
+
+.even-steps-gradient {
+  background: linear-gradient(94.24deg, #b880b5 0%, #e49539 61.9%);
+  border-radius: 10px;
+  padding: 20px 25px;
+  width: 100%; /* Default for small screens */
+}
+
+.button-gradient:hover {
+  background: linear-gradient(
+    102.36deg,
+    rgba(184, 128, 181, 0.5) 0.81%,
+    rgba(197, 134, 144, 0.5) 45.73%,
+    rgba(228, 149, 57, 0.5) 96.39%
+  );
+}
+
+.button-border-gradient {
+  border: 2px solid;
+  border-image-source: linear-gradient(97.01deg, #b880b5 3.23%, #e49539 95.58%);
+}
+
+.footer-gradient {
+  background: radial-gradient(65% 65% at 50% 52.59%, #735383 0%, #413345 100%);
+}
