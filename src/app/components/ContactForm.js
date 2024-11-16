@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 
+emailjs.init("FRLWdjvHLP4McJMHL");
+
 const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,14 +13,38 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     hairLength: "",
     techniques: [],
   });
-  const [isInstructionsVisible, setIsInstructionsVisible] = useState(false);
+
+  // Validation helper function
+  const validateFiles = (files) => {
+    const maxSize = 5 * 1024 * 1024; // 5MB per file
+    const validTypes = ["image/jpeg", "image/png", "image/jpg"];
+
+    for (const file of files) {
+      if (!validTypes.includes(file.type)) {
+        alert("Por favor seleccione solo imágenes (JPG, PNG)");
+        return false;
+      }
+      if (file.size > maxSize) {
+        alert("Cada imagen debe ser menor a 5MB");
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleHairLengthChange = (length) => {
+    setFormData({ ...formData, hairLength: length });
+  };
+
+  const getButtonClass = (length) => {
+    return formData.hairLength === length.label
+      ? 'flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform bg-pink-600'
+      : 'flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform';
   };
 
   const handleTechniqueChange = (technique) => {
@@ -36,39 +63,73 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // Submit handler
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsUploading(true);
 
-    const formPayload = new FormData();
-    formPayload.append("name", formData.name);
-    formPayload.append("email", formData.email);
-    formPayload.append("phone", formData.phone);
-    formPayload.append("hairLength", formData.hairLength);
-    formData.techniques.forEach((technique, index) => {
-      formPayload.append(`technique_${index}`, technique);
-    });
+    try {
+      // Upload all files first and get their URLs
+      const uploadPromises = selectedFiles.map(async (file) => {
+        // Convert file to base64
+        const base64Data = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            resolve(reader.result);
+          };
+        });
 
-    if (selectedFile) {
-      formPayload.append("file", selectedFile);
-    }
+        // Upload to Cloudinary through our API route
+        const response = await fetch("/api/upload", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            file: base64Data,
+          }),
+        });
 
-    emailjs
-      .sendForm(
-        "service_cspzdp9",
-        "template_3tavogq",
-        e.target,
-        "QQnBhytnVo7HZMzV1"
-      )
-      .then(
-        (result) => {
-          console.log("Email sent successfully:", result.text);
-          alert("Email sent successfully!");
+        const data = await response.json();
+        return data.url;
+      });
+
+      // Wait for all uploads to complete
+      const imageUrls = await Promise.all(uploadPromises);
+
+      // Send email with image URLs
+      await emailjs.send(
+        "service_ih5xr8q",
+        "template_nq37iba",
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          hairLength: formData.hairLength,
+          techniques: formData.techniques.join("\n"),
+          imageUrls: imageUrls.join("\n"),
         },
-        (error) => {
-          console.error("Failed to send email:", error.text);
-          alert("Failed to send email. Please try again.");
-        }
+        "FRLWdjvHLP4McJMHL"
       );
+
+      alert("Mensaje enviado exitosamente!");
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        hairLength: "",
+        techniques: [],
+      });
+      setSelectedFiles([]);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error al enviar el mensaje. Por favor intente nuevamente.");
+    } finally {
+      setIsUploading(false);
+    }
   };
 
   return (
@@ -78,9 +139,10 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className={`fixed flex flex-col justify-center ${
+      className={`fixed flex flex-col ${
+        // Removido justify-center para mejor scroll
         isModalOpen ? "right-0" : "-right-[1500px]"
-      } top-0 min-h-screen z-50 lg:w-2/3 py-5 duration-300 px-10 2xl:p-10 rounded-lg shadow-lg font-afacad backdrop-blur-md bg-opacity-70 overflow-y-auto`}
+      } top-0 bottom-0 z-50 lg:w-2/3 py-5 duration-300 px-10 2xl:p-10 rounded-lg shadow-lg font-afacad backdrop-blur-md bg-opacity-70 overflow-y-auto w-full`} // Añadido w-full y bottom-0
     >
       <button
         onClick={() => setIsModalOpen(false)}
@@ -95,7 +157,8 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
       </button>
 
       <img src="/Icons/logo.svg" className="h-16 w-16 mx-auto mb-10" />
-      <form className="space-y-6" onSubmit={handleSubmit}>
+      {/* <form className="space-y-6" onSubmit={handleSubmit}> */}
+      <form className="space-y-6 pb-20" onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-16">
           <div className="space-y-4 2xl:space-y-6">
             <div>
@@ -143,12 +206,18 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                   recomendaciones:
                 </p>
                 <p className="mt-2 list-disc list-inside space-y-1">
-                  ✅ Con luz natural de día.<br/>
-                  ✅ Preferiblemente en un exterior.<br/>
-                  ✅ Tirando tu cabello hacia atrás y de espaldas.<br/>
-                  🚫 No uses filtros, flash o luces artificiales.<br/>
-                  🚫 No tomes la foto a contraluz.<br/>
-                  🚫 Procura que no te ilumine el sol directamente.<br/>
+                  ✅ Con luz natural de día.
+                  <br />
+                  ✅ Preferiblemente en un exterior.
+                  <br />
+                  ✅ Tirando tu cabello hacia atrás y de espaldas.
+                  <br />
+                  🚫 No uses filtros, flash o luces artificiales.
+                  <br />
+                  🚫 No tomes la foto a contraluz.
+                  <br />
+                  🚫 Procura que no te ilumine el sol directamente.
+                  <br />
                 </p>
               </div>
               <div className="mt-2 flex flex-wrap gap-4">
@@ -161,30 +230,61 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                 >
                   <label
                     htmlFor="file-upload"
-                    className="py-2 px-4 bg-[#251525] rounded-[10px] text-white cursor-pointer transition-colors font-afacad w-auto max-w-[200px] flex justify-center items-center"
+                    className="p-2 bg-[#251525] rounded-[10px] text-white cursor-pointer transition-colors font-afacad w-auto max-w-[200px] flex justify-center items-center"
                   >
                     Adjuntar
                     <input
                       id="file-upload"
                       type="file"
                       accept="image/*"
+                      multiple
                       className="hidden"
-                      onChange={handleFileChange}
+                      onChange={(event) => {
+                        const files = Array.from(event.target.files || []);
+                        if (validateFiles(files)) {
+                          setSelectedFiles(files);
+                        }
+                      }}
                     />
                   </label>
                 </div>
-              </div>
 
-              {selectedFile && (
-                <p className="text-white text-sm mt-2">
-                  Archivo seleccionado: {selectedFile.name}
-                </p>
-              )}
+                {isUploading && (
+                  <div className="text-white mt-2">Subiendo imágenes...</div>
+                )}
+
+                {selectedFiles.length > 0 && (
+                  <div className="text-white text-sm mt-2">
+                    <p>Archivos seleccionados:</p>
+                    <ul className="list-disc pl-5">
+                      {selectedFiles.map((file, index) => (
+                        <li
+                          key={index}
+                          className="flex items-center justify-between"
+                        >
+                          <span>{file.name}</span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedFiles((files) =>
+                                files.filter((_, i) => i !== index)
+                              );
+                            }}
+                            className="text-red-500 ml-2"
+                          >
+                            ×
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
           <div className="space-y-4 2xl:space-y-6">
-          <div>
+            <div>
               <label className="block text-white mb-3 text-lg font-semibold">
                 Técnicas de Color
               </label>
@@ -245,10 +345,8 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                   <button
                     key={index}
                     type="button"
-                    onClick={() =>
-                      setFormData({ ...formData, hairLength: length.label })
-                    }
-                    className="flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform"
+                    onClick={() => setFormData({ ...formData, hairLength: length.label })}
+                    className={getButtonClass(length)}
                   >
                     <div className="w-[50px] 2xl:w-[80px] h-[50px] 2xl:h-[80px] overflow-hidden mb-1 rounded-full border-2 border-pink-600">
                       <img
