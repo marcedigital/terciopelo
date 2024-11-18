@@ -32,7 +32,7 @@ const Cards = ({ setIsModalOpen, isModalOpen }) => {
       backImage: "/Images/card-back4.avif",
       title: "tratamientos",
       description:
-        "Te ayudaré a solucionar cualquier problema capilar gracias a tratamientos de alta calidad. Con productos como el Detox Oway o el ácido hialurónico revitalizaremos tu cabello, dejándolo más fuerte, saludable y lleno de vida.",
+        "Te ayudaré a solucionar cualquier problema capilar gracias a tratamientos de alta calidad. Con productos como de alta gama revitalizaremos tu cabello, dejándolo más fuerte, saludable y lleno de vida.",
     },
     {
       frontImage: "/Images/card-front5.avif",

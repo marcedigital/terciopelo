@@ -13,7 +13,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             un lugar ideado para que explores el estilo que refleja tu esencia.
           </h1>
           <p className="text-[17px] lg:text-[20px] leading-[34px] lg:leading-[40px] mb-4 font-afacad">
-            Hola! Soy Nicolle Pity, fundadora de Terciopelo Beauty. He creado
+            Hola! Soy Nicolle Pitty, fundadora de Terciopelo Beauty. He creado
             este espacio pensando en ti, en tus necesidades y en la importancia
             de sentirte realmente espectacular con tu cabello. En este salón, no
             solo se trata de peinar o cortar; se trata de ofrecerte un lugar

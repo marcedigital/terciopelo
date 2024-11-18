@@ -14,9 +14,30 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     techniques: [],
   });
 
-  // Validation helper function
+  // Función para subir imágenes a Cloudinary
+  const uploadToCloudinary = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "ml_default"); // Cambia esto por tu preset
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/dlvrxt1eg/image/upload`, // Cambia YOUR_CLOUD_NAME por tu Cloud Name
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Error al subir la imagen");
+    }
+
+    const data = await response.json();
+    return data.secure_url; // URL pública de la imagen subida
+  };
+
+  // Validación de archivos
   const validateFiles = (files) => {
-    const maxSize = 5 * 1024 * 1024; // 5MB per file
+    const maxSize = 5 * 1024 * 1024; // 5MB por archivo
     const validTypes = ["image/jpeg", "image/png", "image/jpg"];
 
     for (const file of files) {
@@ -43,8 +64,8 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
 
   const getButtonClass = (length) => {
     return formData.hairLength === length.label
-      ? 'flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform bg-pink-600'
-      : 'flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform';
+      ? "flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform bg-pink-600"
+      : "flex gap-1 2xl:gap-3 w-full items-center p-1 2xl:p-2 rounded-lg text-white button-gradient transform transition-transform";
   };
 
   const handleTechniqueChange = (technique) => {
@@ -63,42 +84,18 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     });
   };
 
-  // Submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsUploading(true);
 
     try {
-      // Upload all files first and get their URLs
-      const uploadPromises = selectedFiles.map(async (file) => {
-        // Convert file to base64
-        const base64Data = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onloadend = () => {
-            resolve(reader.result);
-          };
-        });
+      // Subir las imágenes seleccionadas a Cloudinary
+      const uploadPromises = selectedFiles.map((file) =>
+        uploadToCloudinary(file)
+      );
+      const imageUrls = await Promise.all(uploadPromises); // Aquí se definen las URLs
 
-        // Upload to Cloudinary through our API route
-        const response = await fetch("/api/upload", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            file: base64Data,
-          }),
-        });
-
-        const data = await response.json();
-        return data.url;
-      });
-
-      // Wait for all uploads to complete
-      const imageUrls = await Promise.all(uploadPromises);
-
-      // Send email with image URLs
+      // Enviar correo con las URLs de las imágenes
       await emailjs.send(
         "service_ih5xr8q",
         "template_nq37iba",
@@ -114,7 +111,7 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
       );
 
       alert("Mensaje enviado exitosamente!");
-      // Reset form
+      // Resetear el formulario
       setFormData({
         name: "",
         email: "",
