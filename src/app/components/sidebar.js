@@ -36,7 +36,7 @@ const Sidebar = ({ open, isOpen, setIsModalOpen, isModalOpen }) => {
           <div className="mt-8 grid grid-cols-2  space-x-4 lg:space-y-0 lg:space-x-4 ">
             <button 
             onClick={() => document.getElementById("Agenda").scrollIntoView({ behavior: "smooth" })}
-            className="bg-brownBtn/[83] hover:bg-brownGradient w-full max-w-[284px] lg:h-[133px] text-white flex items-center px-6 py-3 rounded-[15px] text-[13px] md:text-[20px] lg:text-[30px] leading-[15px] md:leading-[22px] lg:leading-[32px] ">
+            className="bg-brownBtn/[83] hover:bg-brownGradient w-full max-w-[284px] lg:h-[133px] text-white flex items-center px-2 py-3 rounded-[15px] text-[13px] md:text-[20px] lg:text-[30px] leading-[15px] md:leading-[22px] lg:leading-[32px] ">
               <img
                 src="/Icons/agenda-icon.svg"
                 className="w-[30px] h-[30px] md:w-auto md:h-auto"
@@ -45,7 +45,7 @@ const Sidebar = ({ open, isOpen, setIsModalOpen, isModalOpen }) => {
             </button>
             <button
               onClick={() => setIsModalOpen(!isModalOpen)}
-              className="bg-purpleBtn/50 hover:bg-purpleGradient w-full max-w-[284px] lg:h-[133px] text-white flex items-center px-6 py-3 rounded-[15px]  text-[13px] md:text-[20px] lg:text-[30px] leading-[15px] md:leading-[22px] lg:leading-[32px] "
+              className="bg-purpleBtn/50 hover:bg-purpleGradient w-full max-w-[284px] lg:h-[133px] text-white flex items-center px-2 py-3 rounded-[15px]  text-[13px] md:text-[20px] lg:text-[30px] leading-[15px] md:leading-[22px] lg:leading-[32px] "
             >
               <img
                 src="/Icons/eye (1).svg"

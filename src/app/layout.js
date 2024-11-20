@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
       <Head>
       <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       <link rel="canonical" href="https://terciopelo.calendarhit.com/" />
+      <link rel="preload" href="/Images/bg-stars.avif" as="image" type="image/avif" />
         <meta name="author" content="Nicolle Pitty" />
         <meta property="og:title" content="Terciopelo Beauty Studio" />
         <meta
