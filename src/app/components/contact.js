@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; 
 
 const Contact = ({ setIsModalOpen, isModalOpen }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
+
+
   return (
     <div
     id="studio"
@@ -61,7 +71,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
         </div>
         <div className="space-y-10 max-w-[1100px] justify-self-center">
           <div className="flex justify-end">
-            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%] ">
+            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-right">
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 right-6 lg:right-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 I
               </span>
@@ -75,7 +85,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-start text-end">
-            <div className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]">
+            <div className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-left">
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 left-6 lg:left-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 II
               </span>
@@ -90,7 +100,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]">
+            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-right">
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 right-6 lg:right-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 III
               </span>
@@ -104,7 +114,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-start text-end">
-            <div className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]">
+            <div className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-left">
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 left-6 lg:left-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 IV
               </span>
@@ -118,7 +128,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]">
+            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-right">
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 right-6 lg:right-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 V
               </span>
