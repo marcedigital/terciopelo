@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, lazy } from "react";
+import Image from 'next/image';
 
 const Sidebar = lazy(() => import("./components/sidebar"));
 const Cards = lazy(() => import("./components/cards"));
@@ -39,37 +40,31 @@ const HomePage = () => {
   }, []);
 
   const planet1Style = {
-    transform: `translate(${
-      (mousePosition.x -
-        (typeof window !== "undefined" ? window.innerWidth : 0) / 2) /
+    transform: `translate(${(mousePosition.x -
+      (typeof window !== "undefined" ? window.innerWidth : 0) / 2) /
       10
-    }px, ${
-      (mousePosition.y -
+      }px, ${(mousePosition.y -
         (typeof window !== "undefined" ? window.innerHeight : 0) / 2) /
       10
-    }px)`,
+      }px)`,
   };
   const planet2Style = {
-    transform: `translate(${
-      (mousePosition.x -
-        (typeof window !== "undefined" ? window.innerWidth : 0) / 2) /
+    transform: `translate(${(mousePosition.x -
+      (typeof window !== "undefined" ? window.innerWidth : 0) / 2) /
       7
-    }px, ${
-      (mousePosition.y -
+      }px, ${(mousePosition.y -
         (typeof window !== "undefined" ? window.innerHeight : 0) / 2) /
       7
-    }px)`,
+      }px)`,
   };
   const planet3Style = {
-    transform: `translate(${
-      (mousePosition.x -
-        (typeof window !== "undefined" ? window.innerWidth : 0) / 2) /
+    transform: `translate(${(mousePosition.x -
+      (typeof window !== "undefined" ? window.innerWidth : 0) / 2) /
       5
-    }px, ${
-      (mousePosition.y -
+      }px, ${(mousePosition.y -
         (typeof window !== "undefined" ? window.innerHeight : 0) / 2) /
       5
-    }px)`,
+      }px)`,
   };
 
   return (
@@ -168,7 +163,7 @@ const HomePage = () => {
                     <div className="absolute inset-0 bg-brownGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative text-white flex items-center font-semibold justify-center px-2 py-3">
                       <img
-                      alt="agenda-icon"
+                        alt="agenda-icon"
                         src="/Icons/agenda-icon.svg"
                         className="w-[30px] h-[30px] md:w-[80px] md:h-[80px] mr-2"
                       />
@@ -183,7 +178,7 @@ const HomePage = () => {
                     <div className="absolute inset-0 bg-purpleGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="relative text-white flex items-center font-semibold justify-center px-2 py-3">
                       <img
-                      alt="eye-icon"
+                        alt="eye-icon"
                         src="/Icons/eye (1).svg"
                         className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] mr-2"
                       />
@@ -193,10 +188,14 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="lg:w-1/2 mt-0 md:mt-5 lg:mt-0 ">
-                <img
-                  src={"/Images/hero-image.avif"}
+                <Image
+                  src="/Images/hero-image.avif"
                   alt="Hero Image"
+                  layout="responsive"
+                  width={800}
+                  height={600}
                   className="rounded-lg w-full h-full"
+                  unoptimized
                 />
               </div>
             </main>
@@ -207,7 +206,6 @@ const HomePage = () => {
               isModalOpen={isModalOpen}
             />
 
-            {/* Absolute Images */}
             <div
               className="absolute -z-0 inset-0 hidden lg:flex justify-center items-center h-full"
               style={{ pointerEvents: "none" }}

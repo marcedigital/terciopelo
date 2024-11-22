@@ -1,14 +1,13 @@
-// components/FlippingCard.js
 import React, { useState, useEffect } from "react";
+import Image from 'next/image'; // Importar Image de Next.js
 import "../globals.css";
 
 const FlippingCard = ({ frontImage, backImage, title, description, isFirstCard }) => {
   const [flipped, setFlipped] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(isFirstCard); // Mostrar overlay solo en la primera tarjeta
+  const [showOverlay, setShowOverlay] = useState(isFirstCard); 
 
   useEffect(() => {
-    // Detecta si es dispositivo móvil
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -17,7 +16,7 @@ const FlippingCard = ({ frontImage, backImage, title, description, isFirstCard }
 
   const handleCardClick = () => {
     setFlipped(!flipped);
-    if (showOverlay) setShowOverlay(false); // Ocultar overlay después del primer clic
+    if (showOverlay) setShowOverlay(false);
   };
 
   return (
@@ -40,10 +39,13 @@ const FlippingCard = ({ frontImage, backImage, title, description, isFirstCard }
         }`}
       >
         <div className="face front">
-          <img
+          <Image
             src={frontImage}
-            alt="Front"
-            className="w-full h-full object-cover rounded-lg"
+            alt="Fronte"
+            layout="fill" 
+            objectFit="cover" 
+            unoptimized 
+            className="rounded-lg"
           />
         </div>
         <div

@@ -21,9 +21,8 @@ export default function ThreeCards() {
       {cards.map((card, index) => (
         <div
           key={index}
-          className={`bg-[#2D033B] text-white rounded-lg shadow-xl p-4 w-full lg:w-64 text-center relative overflow-hidden ${
-            index === 2 ? "col-span-2 lg:col-span-1 w-[45%]" : ""
-          }`}
+          className={`bg-[#2D033B] text-white rounded-lg shadow-xl p-4 w-full lg:w-64 text-center relative overflow-hidden ${index === 2 ? "col-span-2 lg:col-span-1 w-[45%]" : ""
+            }`}
           style={{
             backgroundImage: "url('/Images/bg-stars.avif')",
             backgroundSize: "cover",

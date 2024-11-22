@@ -1,13 +1,13 @@
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
+import Image from 'next/image';
 
 const Footer = ({ setIsModalOpen, isModalOpen }) => {
   return (
     <footer className="relative footer-gradient overflow-hidden text-white py-10 px-6">
       <div className=" max-w-6xl mx-auto flex flex-col lg:flex-row justify-between gap-[50px] lg:gap-0 items-start text-center md:text-left">
-        {/* Quote Section */}
         <div className="z-20 flex flex-col items-center md:items-start mb-6 w-full lg:max-w-[100%] md:mb-0">
           <img
-          alt="Logo"
+            alt="Logo"
             src="/Icons/logo-footer.svg"
             className="w-[70%] mx-auto h-auto mb-14 lg:hidden"
           />
@@ -16,7 +16,6 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
             TI MISMO."
           </p>
 
-          {/* Social Icons */}
           <div className="flex mt-4 space-x-4 text-2xl">
             <a href="https://www.instagram.com/terciopelobeauty/" target="_blank" rel="noopener noreferrer">
               <img src="/Icons/Instagram.svg" className="cursor-pointer" alt="Instagram" />
@@ -33,9 +32,7 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
           </div>
         </div>
 
-        {/* Links Section */}
         <div className=" w-full flex flex-col items-center font-afacad gap-[30px]">
-          {/* Site Links */}
           <div className="w-full flex justify-start md:justify-end space-x-8 text-sm font-light">
             <div>
               <h3 className="font-semibold mb-[20px]">SITIO</h3>
@@ -67,8 +64,6 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
                 </li>
               </ul>
             </div>
-
-            {/* Social Links */}
             <div>
               <h3 className="font-semibold mb-[20px]">SOCIAL</h3>
               <ul className="space-y-[20px]">
@@ -89,7 +84,6 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
                 </li>
               </ul>
             </div>
-            {/* Actions Links */}
             <div>
               <h3 className="font-semibold mb-[20px]">ACCIONES</h3>
               <ul className="space-y-[20px]">
@@ -107,14 +101,18 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <img
-          alt="Logo"
+            alt="Logo"
             src="/Icons/logo-footer.svg"
             className="w-full h-auto hidden lg:block"
           />
-          <img
-          alt=""
+          <Image
+            alt=""
             src="/Images/footer-tarot.avif"
-            className=" absolute -bottom-[30%] left-[20%] lg:-bottom-[80%] lg:left-[5%] z-10 max-w-[650px] h-auto"
+            layout="intrinsic"
+            width={650}
+            height={400}
+            className="absolute -bottom-[20%] left-[20%] lg:-bottom-[80%] lg:left-[5%] z-10 h-auto"
+            unoptimized
           />
         </div>
       </div>

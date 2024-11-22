@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from 'next/image';
 import emailjs from "emailjs-com";
 
 emailjs.init("FRLWdjvHLP4McJMHL");
@@ -14,13 +15,12 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     techniques: [],
   });
 
-  // Función para subir imágenes a Cloudinary
   const uploadToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "ml_default"); // Cambia esto por tu preset
+    formData.append("upload_preset", "ml_default");
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/dlvrxt1eg/image/upload`, // Cambia YOUR_CLOUD_NAME por tu Cloud Name
+      `https://api.cloudinary.com/v1_1/dlvrxt1eg/image/upload`,
       {
         method: "POST",
         body: formData,
@@ -32,12 +32,11 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     }
 
     const data = await response.json();
-    return data.secure_url; // URL pública de la imagen subida
+    return data.secure_url;
   };
 
-  // Validación de archivos
   const validateFiles = (files) => {
-    const maxSize = 5 * 1024 * 1024; // 5MB por archivo
+    const maxSize = 20 * 1024 * 1024;
     const validTypes = ["image/jpeg", "image/png", "image/jpg"];
 
     for (const file of files) {
@@ -89,13 +88,11 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
     setIsUploading(true);
 
     try {
-      // Subir las imágenes seleccionadas a Cloudinary
       const uploadPromises = selectedFiles.map((file) =>
         uploadToCloudinary(file)
       );
-      const imageUrls = await Promise.all(uploadPromises); // Aquí se definen las URLs
+      const imageUrls = await Promise.all(uploadPromises);
 
-      // Enviar correo con las URLs de las imágenes
       await emailjs.send(
         "service_ih5xr8q",
         "template_nq37iba",
@@ -111,7 +108,6 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
       );
 
       alert("Mensaje enviado exitosamente!");
-      // Resetear el formulario
       setFormData({
         name: "",
         email: "",
@@ -136,10 +132,8 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      className={`fixed flex flex-col ${
-        // Removido justify-center para mejor scroll
-        isModalOpen ? "right-0" : "-right-[1500px]"
-      } top-0 bottom-0 z-50 lg:w-2/3 py-5 duration-300 px-10 2xl:p-10 rounded-lg shadow-lg font-afacad backdrop-blur-md bg-opacity-70 overflow-y-auto w-full`} // Añadido w-full y bottom-0
+      className={`fixed flex flex-col ${isModalOpen ? "right-0" : "-right-[1500px]"
+        } top-0 bottom-0 z-50 lg:w-2/3 py-5 duration-300 px-10 2xl:p-10 rounded-lg shadow-lg font-afacad backdrop-blur-md bg-opacity-70 overflow-y-auto w-full`} // Añadido w-full y bottom-0
     >
       <button
         onClick={() => setIsModalOpen(false)}
@@ -154,7 +148,6 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
       </button>
 
       <img alt="Logo" src="/Icons/logo.svg" className="h-16 w-16 mx-auto mb-10" />
-      {/* <form className="space-y-6" onSubmit={handleSubmit}> */}
       <form className="space-y-6 pb-20" onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-16">
           <div className="space-y-4 2xl:space-y-6">
@@ -339,21 +332,26 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                   { label: "Largo", imageUrl: "/Images/3.avif" },
                   { label: "Extralargo", imageUrl: "/Images/4.avif" },
                 ].map((length, index) => (
+
                   <button
-                  key={index}
-                  type="button"
-                  onClick={() => setFormData({ ...formData, hairLength: length.label })}
-                  className={getButtonClass(length)}
-                >
-                  <div className="relative w-[50px] 2xl:w-[80px] h-[50px] 2xl:h-[80px] overflow-hidden mb-1 rounded-full border-2 border-pink-600">
-                    <img
-                      src={length.imageUrl}
-                      alt={`Image representing ${length.label}`} 
-                      className="w-full h-full object-cover" 
-                    />
-                  </div>
-                  <span className="text-sm">{length.label}</span>
-                </button>                
+                    key={index}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, hairLength: length.label })}
+                    className={getButtonClass(length)}
+                  >
+                    <div className="relative w-[50px] 2xl:w-[80px] h-[50px] 2xl:h-[80px] overflow-hidden mb-1 rounded-full border-2 border-pink-600">
+                      <Image
+                        src={length.imageUrl}
+                        alt={`Image representing ${length.label}`}
+                        layout="fill"
+                        objectFit="cover"
+                        unoptimized
+                        className="rounded-full"
+                      />
+                    </div>
+                    <span className="text-sm">{length.label}</span>
+                  </button>
+
                 ))}
               </div>
             </div>
@@ -372,7 +370,7 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                 <div className="absolute inset-0 bg-purpleGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative text-white flex items-center justify-center font-semibold font-levaus px-3 py-3">
                   <img
-                  alt=""
+                    alt=""
                     src="/Icons/eye (1).svg"
                     className="w-[30px] h-[30px] md:w-[60px] md:h-[60px] mr-2"
                   />

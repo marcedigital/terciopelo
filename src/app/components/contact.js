@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import "aos/dist/aos.css"; 
+import "aos/dist/aos.css";
+import Image from 'next/image';
 
 const Contact = ({ setIsModalOpen, isModalOpen }) => {
   useEffect(() => {
@@ -13,14 +14,14 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
 
   return (
     <div
-    id="studio"
-    className="py-[8%] lg:py-[5%] px-[10%] lg:px-[8%] bg-cover bg-center bg-black
+      id="studio"
+      className="py-[8%] lg:py-[5%] px-[10%] lg:px-[8%] bg-cover bg-center bg-black
                bg-[url('/Images/bg-starsM.png')] lg:bg-[url('/Images/bg-stars.avif')] 
                bg-no-repeat lg:bg-fixed"
-    style={{
-      backgroundColor: "#000", // Color de respaldo
-    }}
-  >
+      style={{
+        backgroundColor: "#000",
+      }}
+    >
       <div className="flex flex-col xl:flex-row text-center xl:items-end gap-[40px] justify-center items-center">
         <div className="space-y-10 text-white max-w-[800px] w-full">
           <h1 className="text-[28px] md:text-[45px] lg:text-[40px] leading-[45px] md:leading-[60px] lg:leading-[70px] ">
@@ -45,7 +46,15 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
           </div>
         </div>
         <div className="min-w-[33%] max-w-[400px] lg:max-w-none">
-          <img alt="Terciopelo estudio" src="/Images/studio.avif" className="w-full max-h-[750px]" />
+          <Image
+            alt="Terciopelo estudio"
+            src="/Images/studio.avif"
+            layout="responsive"
+            width={400}
+            height={600}
+            className="w-full max-h-[750px]"
+            unoptimized
+          />
         </div>
         <div className="rounded-[10px] xl:hidden h-[200px] w-full max-w-[800px] overflow-hidden border-[#ECDA98] border-2">
           <iframe
@@ -155,7 +164,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             <div className="absolute inset-0 bg-brownGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative text-white flex items-center justify-center font-semibold px-2 py-3">
               <img
-              alt=""
+                alt=""
                 src="/Icons/agenda-icon.svg"
                 className="w-[30px] h-[30px] md:w-[80px] md:h-[80px] mr-2"
               />
@@ -170,7 +179,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             <div className="absolute inset-0 bg-purpleGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative text-white flex items-center justify-center font-semibold px-2 py-3">
               <img
-              alt=""
+                alt=""
                 src="/Icons/eye (1).svg"
                 className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] mr-2"
               />
