@@ -13,7 +13,7 @@ const Sidebar = ({ open, isOpen, setIsModalOpen, isModalOpen }) => {
           onClick={() => isOpen(false)}
           className="self-end text-2xl absolute top-10 left-8"
         >
-          <img src="/Icons/close-icon.svg" />
+          <img alt="" src="/Icons/close-icon.svg" />
         </button>
         <div className="flex flex-col items-center gap-8 mt-8 text-xl font-light tracking-widest ">
           <button href="#servicios">
@@ -38,6 +38,7 @@ const Sidebar = ({ open, isOpen, setIsModalOpen, isModalOpen }) => {
             onClick={() => document.getElementById("Agenda").scrollIntoView({ behavior: "smooth" })}
             className="bg-brownBtn/[83] hover:bg-brownGradient w-full max-w-[284px] lg:h-[133px] text-white flex items-center px-2 py-3 rounded-[15px] text-[13px] md:text-[20px] lg:text-[30px] leading-[15px] md:leading-[22px] lg:leading-[32px] ">
               <img
+              alt=""
                 src="/Icons/agenda-icon.svg"
                 className="w-[30px] h-[30px] md:w-auto md:h-auto"
               />
@@ -48,6 +49,7 @@ const Sidebar = ({ open, isOpen, setIsModalOpen, isModalOpen }) => {
               className="bg-purpleBtn/50 hover:bg-purpleGradient w-full max-w-[284px] lg:h-[133px] text-white flex items-center px-2 py-3 rounded-[15px]  text-[13px] md:text-[20px] lg:text-[30px] leading-[15px] md:leading-[22px] lg:leading-[32px] "
             >
               <img
+              alt=""
                 src="/Icons/eye (1).svg"
                 className="w-[30px] h-[30px] md:w-auto md:h-auto"
               />

@@ -153,7 +153,7 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
         &times;
       </button>
 
-      <img src="/Icons/logo.svg" className="h-16 w-16 mx-auto mb-10" />
+      <img alt="Logo" src="/Icons/logo.svg" className="h-16 w-16 mx-auto mb-10" />
       {/* <form className="space-y-6" onSubmit={handleSubmit}> */}
       <form className="space-y-6 pb-20" onSubmit={handleSubmit}>
         <div className="grid md:grid-cols-2 gap-16">
@@ -340,20 +340,20 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                   { label: "Extralargo", imageUrl: "/Images/4.avif" },
                 ].map((length, index) => (
                   <button
-                    key={index}
-                    type="button"
-                    onClick={() => setFormData({ ...formData, hairLength: length.label })}
-                    className={getButtonClass(length)}
-                  >
-                    <div className="w-[50px] 2xl:w-[80px] h-[50px] 2xl:h-[80px] overflow-hidden mb-1 rounded-full border-2 border-pink-600">
-                      <img
-                        src={length.imageUrl}
-                        alt={length.label}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <span className="text-sm">{length.label}</span>
-                  </button>
+                  key={index}
+                  type="button"
+                  onClick={() => setFormData({ ...formData, hairLength: length.label })}
+                  className={getButtonClass(length)}
+                >
+                  <div className="relative w-[50px] 2xl:w-[80px] h-[50px] 2xl:h-[80px] overflow-hidden mb-1 rounded-full border-2 border-pink-600">
+                    <img
+                      src={length.imageUrl}
+                      alt={`Image representing ${length.label}`} 
+                      className="w-full h-full object-cover" 
+                    />
+                  </div>
+                  <span className="text-sm">{length.label}</span>
+                </button>                
                 ))}
               </div>
             </div>
@@ -372,6 +372,7 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                 <div className="absolute inset-0 bg-purpleGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative text-white flex items-center justify-center font-semibold font-levaus px-3 py-3">
                   <img
+                  alt=""
                     src="/Icons/eye (1).svg"
                     className="w-[30px] h-[30px] md:w-[60px] md:h-[60px] mr-2"
                   />

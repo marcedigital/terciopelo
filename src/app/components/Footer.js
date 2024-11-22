@@ -7,6 +7,7 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
         {/* Quote Section */}
         <div className="z-20 flex flex-col items-center md:items-start mb-6 w-full lg:max-w-[100%] md:mb-0">
           <img
+          alt="Logo"
             src="/Icons/logo-footer.svg"
             className="w-[70%] mx-auto h-auto mb-14 lg:hidden"
           />
@@ -106,10 +107,12 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <img
+          alt="Logo"
             src="/Icons/logo-footer.svg"
             className="w-full h-auto hidden lg:block"
           />
           <img
+          alt=""
             src="/Images/footer-tarot.avif"
             className=" absolute -bottom-[30%] left-[20%] lg:-bottom-[80%] lg:left-[5%] z-10 max-w-[650px] h-auto"
           />

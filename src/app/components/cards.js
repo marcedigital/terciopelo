@@ -89,6 +89,7 @@ const Cards = ({ setIsModalOpen, isModalOpen }) => {
                 <div className="absolute inset-0 bg-brownGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative text-white flex items-center justify-center font-semibold px-2 py-3">
                   <img
+                  alt=""
                     src="/Icons/agenda-icon.svg"
                     className="w-[30px] h-[30px] md:w-[80px] md:h-[80px] mr-2"
                   />
@@ -103,6 +104,7 @@ const Cards = ({ setIsModalOpen, isModalOpen }) => {
                 <div className="absolute inset-0 bg-purpleGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative text-white flex items-center justify-center font-semibold px-2 py-3">
                   <img
+                  alt=""
                     src="/Icons/eye (1).svg"
                     className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] mr-2"
                   />

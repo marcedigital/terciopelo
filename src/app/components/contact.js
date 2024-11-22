@@ -45,7 +45,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
           </div>
         </div>
         <div className="min-w-[33%] max-w-[400px] lg:max-w-none">
-          <img src="/Images/studio.avif" className="w-full max-h-[750px]" />
+          <img alt="Terciopelo estudio" src="/Images/studio.avif" className="w-full max-h-[750px]" />
         </div>
         <div className="rounded-[10px] xl:hidden h-[200px] w-full max-w-[800px] overflow-hidden border-[#ECDA98] border-2">
           <iframe
@@ -155,6 +155,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             <div className="absolute inset-0 bg-brownGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative text-white flex items-center justify-center font-semibold px-2 py-3">
               <img
+              alt=""
                 src="/Icons/agenda-icon.svg"
                 className="w-[30px] h-[30px] md:w-[80px] md:h-[80px] mr-2"
               />
@@ -169,6 +170,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             <div className="absolute inset-0 bg-purpleGradient opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative text-white flex items-center justify-center font-semibold px-2 py-3">
               <img
+              alt=""
                 src="/Icons/eye (1).svg"
                 className="w-[40px] h-[40px] md:w-[80px] md:h-[80px] mr-2"
               />
