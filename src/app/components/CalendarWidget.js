@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Upload, X } from "lucide-react";
 import emailjs from "emailjs-com";
 import ProtocolSection from "./ProtocolSection";
@@ -12,9 +12,12 @@ const CalendarWidget = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [isProtocolOpen, setIsProtocolOpen] = useState(false);
 
+  // Nuevo estado para mostrar el popup
+  const [showProtocolPopup, setShowProtocolPopup] = useState(false);
+
   const sendEmail = async (imageUrl) => {
     try {
-      await emailjs.send(
+     await emailjs.send(
         "service_ih5xr8q",
         "template_7491sqh",
         {
@@ -56,7 +59,7 @@ const CalendarWidget = () => {
     formData.append("file", file);
     formData.append("upload_preset", "ml_default");
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/dlvrxt1eg/image/upload`,
+      "https://api.cloudinary.com/v1_1/dlvrxt1eg/image/upload",
       {
         method: "POST",
         body: formData,
@@ -85,6 +88,7 @@ const CalendarWidget = () => {
       localStorage.setItem('depositProofUrl', imageUrl);
       setIsVerified(true);
       setError("");
+      setShowProtocolPopup(true);
     } catch (error) {
       console.error("Error:", error);
       setError("Error al procesar el comprobante. Por favor intenta nuevamente.");
@@ -108,7 +112,11 @@ const CalendarWidget = () => {
           <div className="max-w-2xl mx-auto mb-8">
             <div className="flex flex-col md:flex-row gap-5">
               <div className="flex-1 p-4 content-center justify-center bg-amber-50 border border-amber-200 font-afacad rounded-lg">
-                <p className="text-amber-800">Para agendar tu cita, debes proporcionar el comprobante de reserva de &#8353;5000.<br/>Este monto se descontará del costo final. <br/> SINPE: 6962-1262</p>
+                <p className="text-amber-800">
+                  Para agendar tu cita, debes proporcionar el comprobante de reserva de &#8353;5000.<br/>
+                  Este monto se descontará del costo final. <br/> 
+                  SINPE: 6962-1262
+                </p>
               </div>
 
               <div className="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-6">
@@ -159,19 +167,17 @@ const CalendarWidget = () => {
             </button>
           </div>
         ) : (
-          <>
-            <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-              <p className="text-green-800 font-bold">¡Ahora puedes continuar con tu reserva!</p>
-            </div>
-            
-            <div className="mb-8">
-              <ProtocolSection 
-                isOpen={isProtocolOpen}
-                onToggle={() => setIsProtocolOpen(!isProtocolOpen)}
-              />
-            </div>
-          </>
+          <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <p className="text-green-800 font-bold">¡Ahora puedes continuar con tu reserva!</p>
+          </div>
         )}
+
+        <div className="mb-8">
+          <ProtocolSection 
+            isOpen={isProtocolOpen}
+            onToggle={() => setIsProtocolOpen(!isProtocolOpen)}
+          />
+        </div>
 
         <div 
           className={`w-full rounded-xl overflow-hidden relative ${!isVerified ? 'pointer-events-none' : ''}`}
@@ -186,6 +192,99 @@ const CalendarWidget = () => {
           />
         </div>
       </div>
+
+      {showProtocolPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="absolute inset-0 bg-black opacity-50"></div>
+          <div className="bg-white max-w-xl w-full rounded-lg p-6 relative z-10 overflow-auto max-h-[90vh]">
+            <button 
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              onClick={() => setShowProtocolPopup(false)}
+            >
+              <X size={24} />
+            </button>
+            <h2 className="text-xl font-levaus text-[#C293C2] mb-4">Protocolo para tu cita</h2>
+            <div className="space-y-6 justify-items-left md:px-4 text-left">
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2">Llegada puntual</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Se darán 15 minutos de tolerancia después de la hora acordada, de lo contrario la cita será cancelada.</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2">Comunicación abierta</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Comunica cualquier alergia o sensibilidad a productos.</span>
+                  </li>
+                  <li className="flex text-left">
+                    <span>Comparte cualquier afectación en tu salud familiar.</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2">Durante el servicio</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Si deseas una "Cita silenciosa" solicítala previamente.</span>
+                  </li>
+                  <li className="flex text-left">
+                    <span>Relájate y disfruta de la experiencia.</span>
+                  </li>
+                  <li className="flex text-left">
+                    <span>Siéntete libre de solicitar tu playlist o canción favorita.</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2 ">Pago</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Solo se aceptarán pagos en efectivo o SINPE Móvil.</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2">Higiene personal</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Lava tu cabello al menos 2 días antes de tu cita y asegúrate que esté libre de productos.</span>
+                  </li>
+                  <li className="flex text-left">
+                    <span>De lo contrario tendrás un cobro adicional de ₡2500.</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2">Medidas Sanitarias</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Si presentas síntomas de gripe o cualquier otra afectación viral, utiliza mascarilla o reprograma tu cita con 12h de anticipación.</span>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold text-[#C293C2] mb-2">Código de vestimenta</h3>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex text-left">
+                    <span>Ven con ropa cómoda y que se pueda manchar. Aunque procuramos no dañar tu ropa, lo mejor es que te prepares, especialmente si tu cita incluye tinte.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-6 flex justify-end">
+              <button 
+                onClick={() => setShowProtocolPopup(false)} 
+                className="bg-[#C293C2] text-white px-4 py-2 rounded hover:bg-[#a97ba9]"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
