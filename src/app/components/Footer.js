@@ -108,7 +108,6 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
           <Image
             alt=""
             src="/Images/footer-tarot.avif"
-            layout="intrinsic"
             width={650}
             height={400}
             className="absolute -bottom-[20%] left-[20%] lg:-bottom-[80%] lg:left-[5%] z-10 h-auto"

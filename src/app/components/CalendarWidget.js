@@ -17,7 +17,7 @@ const CalendarWidget = () => {
 
   const sendEmail = async (imageUrl) => {
     try {
-     await emailjs.send(
+    await emailjs.send(
         "service_ih5xr8q",
         "template_7491sqh",
         {
@@ -115,7 +115,7 @@ const CalendarWidget = () => {
                 <p className="text-amber-800">
                   Para agendar tu cita, debes proporcionar el comprobante de reserva de &#8353;5000.<br/>
                   Este monto se descontará del costo final. <br/> 
-                  SINPE: 6962-1262
+                  SINPE: 8963 2882
                 </p>
               </div>
 
@@ -206,69 +206,69 @@ const CalendarWidget = () => {
             <h2 className="text-xl font-levaus text-[#C293C2] mb-4">Protocolo para tu cita</h2>
             <div className="space-y-6 justify-items-left md:px-4 text-left">
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2">Llegada puntual</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Llegada puntual</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Se darán 15 minutos de tolerancia después de la hora acordada, de lo contrario la cita será cancelada.</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2">Comunicación abierta</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Comunicación abierta</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Comunica cualquier alergia o sensibilidad a productos.</span>
                   </li>
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Comparte cualquier afectación en tu salud familiar.</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2">Durante el servicio</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Durante el servicio</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Si deseas una "Cita silenciosa" solicítala previamente.</span>
                   </li>
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Relájate y disfruta de la experiencia.</span>
                   </li>
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Siéntete libre de solicitar tu playlist o canción favorita.</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2 ">Pago</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Pago</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Solo se aceptarán pagos en efectivo o SINPE Móvil.</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2">Higiene personal</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Higiene personal</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Lava tu cabello al menos 2 días antes de tu cita y asegúrate que esté libre de productos.</span>
                   </li>
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>De lo contrario tendrás un cobro adicional de ₡2500.</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2">Medidas Sanitarias</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Medidas Sanitarias</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Si presentas síntomas de gripe o cualquier otra afectación viral, utiliza mascarilla o reprograma tu cita con 12h de anticipación.</span>
                   </li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold text-[#C293C2] mb-2">Código de vestimenta</h3>
+                <h3 className="font-semibold font-afacad text-[#C293C2] mb-2 lg:text-xl">Código de vestimenta</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li className="flex text-left">
+                  <li className="flex text-left font-afacad lg:text-xl">
                     <span>Ven con ropa cómoda y que se pueda manchar. Aunque procuramos no dañar tu ropa, lo mejor es que te prepares, especialmente si tu cita incluye tinte.</span>
                   </li>
                 </ul>

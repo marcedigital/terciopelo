@@ -42,8 +42,8 @@ const FlippingCard = ({ frontImage, backImage, title, description, isFirstCard }
           <Image
             src={frontImage}
             alt="Fronte"
-            layout="fill" 
-            objectFit="cover" 
+            fill
+            style={{ objectFit: 'cover' }} 
             unoptimized 
             className="rounded-lg"
           />

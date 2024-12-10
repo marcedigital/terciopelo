@@ -191,11 +191,11 @@ const HomePage = () => {
                 <Image
                   src="/Images/hero-image.avif"
                   alt="Hero Image"
-                  layout="responsive"
                   width={800}
                   height={600}
                   className="rounded-lg w-full h-full"
                   unoptimized
+                  priority
                 />
               </div>
             </main>

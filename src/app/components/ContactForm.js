@@ -343,8 +343,8 @@ const ContactForm = ({ isModalOpen, setIsModalOpen }) => {
                       <Image
                         src={length.imageUrl}
                         alt={`Image representing ${length.label}`}
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: 'cover' }} 
                         unoptimized
                         className="rounded-full"
                       />

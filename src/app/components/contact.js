@@ -49,7 +49,6 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
           <Image
             alt="Terciopelo estudio"
             src="/Images/studio.avif"
-            layout="responsive"
             width={400}
             height={600}
             className="w-full max-h-[750px]"
