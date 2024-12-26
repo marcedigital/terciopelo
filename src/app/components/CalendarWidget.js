@@ -161,7 +161,7 @@ const CalendarWidget = () => {
             <button
               onClick={handleUpload}
               disabled={isUploading || !selectedFile}
-              className="mt-6 bg-[#C293C2] text-white px-6 py-2 rounded-lg hover:bg-[#a97ba9] transition-colors disabled:opacity-50 w-full"
+              className="mt-6 bg-[#C293C2] text-white px-6 py-2 rounded-lg hover:bg-[#a97ba9] font-bold tracking-wider transition-colors disabled:opacity-50 w-full "
             >
               {isUploading ? "Subiendo..." : "Verificar Comprobante"}
             </button>
