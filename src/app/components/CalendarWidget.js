@@ -143,7 +143,7 @@ const CalendarWidget = () => {
                     />
                     <div className="flex flex-col items-center gap-2">
                       <Upload className="w-12 h-12 text-gray-400" />
-                      <span className="text-gray-600">
+                      <span className="text-gray-600 font-afacad">
                         Haz clic para seleccionar o arrastra tu comprobante aquí
                       </span>
                     </div>
