@@ -97,6 +97,18 @@ const CalendarWidget = () => {
     }
   };
 
+  // Nuevo manejador para el botón de WhatsApp
+  const handleWhatsAppSend = () => {
+    // Abrir WhatsApp en una nueva pestaña
+    window.open("https://wa.me/50689632882?text=Hola%20👋%2C%20adjunto%20el%20comprobante%20de%20pago%20para%20mi%20cita.", "_blank");
+    
+    // Habilitar el timely (marcar como verificado)
+    setIsVerified(true);
+    
+    // Mostrar el pop-up del protocolo
+    setShowProtocolPopup(true);
+  };
+
   return (
     <div id="Agenda" className="w-full min-h-screen pt-[4vh] flex justify-center items-center mb-10">
       <div className="max-w-[1000px] w-full rounded-xl bg-white shadow-lg p-8 text-center">
@@ -119,7 +131,7 @@ const CalendarWidget = () => {
                 </p>
               </div>
 
-              <div className="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-6">
+              {/* <div className="flex-1 border-2 border-dashed border-gray-300 rounded-lg p-6">
                 {selectedFile ? (
                   <div className="space-y-4">
                     <div className="flex flex-col items-center justify-center gap-2">
@@ -149,7 +161,7 @@ const CalendarWidget = () => {
                     </div>
                   </label>
                 )}
-              </div>
+              </div> */}
             </div>
 
             {error && (
@@ -158,12 +170,21 @@ const CalendarWidget = () => {
               </div>
             )}
 
-            <button
+            {/* Botón original comentado */}
+            {/* <button
               onClick={handleUpload}
               disabled={isUploading || !selectedFile}
               className="mt-6 bg-[#C293C2] text-white px-6 py-2 rounded-lg hover:bg-[#a97ba9] font-bold tracking-wider transition-colors disabled:opacity-50 w-full "
             >
               {isUploading ? "Subiendo..." : "Verificar Comprobante"}
+            </button> */}
+            
+            {/* Nuevo botón de WhatsApp */}
+            <button
+              onClick={handleWhatsAppSend}
+              className="mt-6 bg-[#C293C2] text-white px-6 py-2 rounded-lg hover:bg-[#a97ba9] font-bold tracking-wider transition-colors w-full"
+            >
+              Enviar Comprobante
             </button>
           </div>
         ) : (
