@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Image from 'next/image';
+import Image from "next/image";
 
 const Contact = ({ setIsModalOpen, isModalOpen }) => {
   useEffect(() => {
@@ -10,7 +10,6 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
       once: true,
     });
   }, []);
-
 
   return (
     <div
@@ -37,7 +36,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
           </p>
           <div className="rounded-[10px] hidden xl:block h-[200px] w-[85%] overflow-hidden border=[#ECDA98] border-2 mx-auto">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.707304126917!2d-84.06858842403952!3d9.958292490145022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e58846e0fb53%3A0xc23b75751d5a4681!2sTerciopelo%20Beauty%20Studio!5e0!3m2!1ses!2scr!4v1730997251038!5m2!1ses!2scr"
+              src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3929.702796666797!2d-84.05966572496938!3d9.95866679014466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwNTcnMzEuMiJOIDg0wrAwMycyNS41Ilc!5e0!3m2!1ses!2scr!4v1750096584402!5m2!1ses!2scr"
               className="w-full h-full"
               allowFullScreen=""
               loading="lazy"
@@ -57,7 +56,7 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
         </div>
         <div className="rounded-[10px] xl:hidden h-[200px] w-full max-w-[800px] overflow-hidden border-[#ECDA98] border-2">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.707304126917!2d-84.06858842403952!3d9.958292490145022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e58846e0fb53%3A0xc23b75751d5a4681!2sTerciopelo%20Beauty%20Studio!5e0!3m2!1ses!2scr!4v1730997251038!5m2!1ses!2scr"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3929.702796666797!2d-84.05966572496938!3d9.95866679014466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOcKwNTcnMzEuMiJOIDg0wrAwMycyNS41Ilc!5e0!3m2!1ses!2scr!4v1750096584402!5m2!1ses!2scr"
             className="w-full h-full"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -79,7 +78,10 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
         </div>
         <div className="space-y-10 max-w-[1100px] justify-self-center">
           <div className="flex justify-end">
-            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-right">
+            <div
+              className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]"
+              data-aos="fade-right"
+            >
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 right-6 lg:right-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 I
               </span>
@@ -93,7 +95,10 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-start text-end">
-            <div className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-left">
+            <div
+              className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]"
+              data-aos="fade-left"
+            >
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 left-6 lg:left-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 II
               </span>
@@ -108,7 +113,10 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-right">
+            <div
+              className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]"
+              data-aos="fade-right"
+            >
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 right-6 lg:right-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 III
               </span>
@@ -122,7 +130,10 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-start text-end">
-            <div className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-left">
+            <div
+              className="even-steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]"
+              data-aos="fade-left"
+            >
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 left-6 lg:left-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 IV
               </span>
@@ -136,7 +147,10 @@ const Contact = ({ setIsModalOpen, isModalOpen }) => {
             </div>
           </div>
           <div className="flex justify-end">
-            <div className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]" data-aos="fade-right">
+            <div
+              className="steps-gradient mt-2 space-y-3 relative w-full md:w-[85%] lg:w-[60%]"
+              data-aos="fade-right"
+            >
               <span className="bg-white font-semibold absolute h-[65px] lg:h-[83px] w-[65px] lg:w-[83px] flex items-center justify-center -top-8 lg:-top-12 right-6 lg:right-12 rounded-full border-2 border-[#E49539] text-[40px] text-[#E49539]">
                 V
               </span>

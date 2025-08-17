@@ -14,7 +14,7 @@ const ProtocolSection = ({ isOpen, onToggle }) => {
 
       <div
         className={`mt-4 transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[3000px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="border rounded-lg p-6 bg-white">
@@ -22,6 +22,8 @@ const ProtocolSection = ({ isOpen, onToggle }) => {
   
 
           <div className="space-y-6 justify-items-center md:px-36">
+            
+
             <div>
               <h3 className="font-semibold text-[#C293C2] mb-2">Llegada puntual</h3>
               <ul className="space-y-2 text-gray-700">

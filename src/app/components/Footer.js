@@ -26,7 +26,7 @@ const Footer = ({ setIsModalOpen, isModalOpen }) => {
             <a href="https://wa.me/50689632882" target="_blank" rel="noopener noreferrer">
               <img src="/Icons/Whatsapp.svg" className="cursor-pointer" alt="WhatsApp" />
             </a>
-            <a href="https://waze.com/ul?q=Terciopelo Beauty Studio&ll=9.958292,-84.066013&navigate=yes" target="_blank" rel="noopener noreferrer">
+            <a href="https://maps.app.goo.gl/4UPPewYJRmMX7Tkf8" target="_blank" rel="noopener noreferrer">
               <img src="/Icons/Waze.svg" className="cursor-pointer" alt="Waze" />
             </a>
           </div>

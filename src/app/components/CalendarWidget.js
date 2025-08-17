@@ -204,7 +204,62 @@ const CalendarWidget = () => {
           className={`w-full rounded-xl overflow-hidden relative ${!isVerified ? 'pointer-events-none' : ''}`}
         >
           {!isVerified && (
-            <div className="absolute inset-0 bg-gray-200/10 bg-opacity-50 backdrop-blur-[2px] z-10"></div>
+            <div className="absolute inset-0 bg-gray-200/10 bg-opacity-50 backdrop-blur-[2px] z-10 flex items-center justify-center p-6">
+              <div className="bg-white/90 rounded-xl p-6 shadow-lg max-w-4xl w-full pointer-events-auto">
+                <h3 className="font-levaus text-[#C293C2] mb-4 text-xl text-center">Bueno saber - Paquetes de Servicios</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  
+                  {/* Package 1 */}
+                  <div className="bg-gradient-to-br from-[#f8f4ff] to-[#fff5f0] border border-[#E49539]/20 rounded-lg p-4 text-center">
+                    <h4 className="font-semibold font-afacad text-[#C293C2] mb-2 text-sm">Paquete Peinados Semanales</h4>
+                    <p className="text-gray-700 font-afacad text-xs mb-3">Obtén un peinado profesional cada semana</p>
+                    <div className="text-[#E49539] font-bold text-lg">₡50,000/mes</div>
+                  </div>
+
+                  {/* Package 2 */}
+                  <div className="bg-gradient-to-br from-[#f8f4ff] to-[#fff5f0] border border-[#E49539]/20 rounded-lg p-4 text-center">
+                    <h4 className="font-semibold font-afacad text-[#C293C2] mb-2 text-sm">Paquete Renacimiento Solar</h4>
+                    <p className="text-gray-700 font-afacad text-xs mb-3">Trabajamos el renacimiento de tu cabello con 4 tratamientos especializados</p>
+                    <div className="text-[#E49539] font-bold text-lg">₡100,000</div>
+                  </div>
+
+                  {/* Package 3 */}
+                  <div className="bg-gradient-to-br from-[#f8f4ff] to-[#fff5f0] border border-[#E49539]/20 rounded-lg p-4 text-center">
+                    <h4 className="font-semibold font-afacad text-[#C293C2] mb-2 text-sm">Paquete Corte de Pava</h4>
+                    <p className="text-gray-700 font-afacad text-xs mb-3">Mantén tu fleco del largo que te gusta todo el tiempo</p>
+                    <div className="text-[#E49539] font-bold text-lg">₡20,000/4 cortes</div>
+                  </div>
+
+                </div>
+                
+                {/* CTA Buttons */}
+                <div className="mt-6 flex flex-col items-center space-y-3">
+                  <button
+                    onClick={() => {
+                      window.open("https://wa.me/50689632882?text=Hola%20👋%2C%20me%20interesa%20comprar%20un%20paquete%20de%20servicios.", "_blank");
+                      setIsVerified(true);
+                    }}
+                    className="bg-[#C293C2] hover:bg-[#a97ba9] text-white px-6 py-3 rounded-lg font-bold font-afacad tracking-wider transition-colors w-full max-w-xs"
+                  >
+                    Comprar Paquete
+                  </button>
+                  
+                  <div className="text-gray-600 font-afacad text-sm">o</div>
+                  
+                  <button
+                    onClick={() => {
+                      window.open("https://wa.me/50689632882?text=Hola%20👋%2C%20adjunto%20el%20comprobante%20de%20pago%20para%20mi%20cita.", "_blank");
+                      setIsVerified(true);
+                      setShowProtocolPopup(true);
+                    }}
+                    className="bg-[#E49539] hover:bg-[#d4822b] text-white px-6 py-3 rounded-lg font-bold font-afacad tracking-wider transition-colors w-full max-w-xs"
+                  >
+                    Enviar comprobante de reserva
+                  </button>
+                </div>
+
+              </div>
+            </div>
           )}
           <iframe
             src="https://bookings.gettimely.com/terciopelobeauty/bb/book"
